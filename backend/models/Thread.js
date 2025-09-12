@@ -26,7 +26,7 @@ const ThreadSchema = new mongoose.Schema({
         type:String,
         default:"New Chat"
     },
-    messages:[messageSchema],
+    messages:[MessageSchema],
     createAt:{
         type:Date,
         default:Date.now
