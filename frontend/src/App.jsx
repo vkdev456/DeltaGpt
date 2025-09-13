@@ -5,8 +5,7 @@ import { Mycontext } from './components/MyContext.jsx';
 
 function App() {
   const providerValues={};
-
-
+  
   return (
     <>
     <div className="app">
