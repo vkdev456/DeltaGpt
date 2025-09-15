@@ -20,7 +20,7 @@ function Sidebar(){
 
             {/* sign */}
             <div className="sign">
-               <p>By Vk✨ </p> 
+               <p> By Vk✨ </p> 
             </div>
         </section>
         </>
