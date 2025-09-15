@@ -15,9 +15,11 @@ app.use(cors());
 
 app.use("/api",chatRoutes);//routes this run the route file 
 
-app.listen(port, () => {
+app.listen(port, async() => {
+  await connectDB();
   console.log(`Server running on port ${port}`);
-  connectDB();
+
+ 
 });
 
 const connectDB = async()=>{
