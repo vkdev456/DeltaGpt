@@ -19,7 +19,8 @@ function ChatWindow(){
                     </input>
                     <div id="submit"><i class="fa-solid fa-paper-plane"></i></div>
                 </div>
-                <p>VksGpt can make mistakes</p>
+                
+                <p className="info">VksGpt can make mistakes</p>
             </div>
         </div>
         

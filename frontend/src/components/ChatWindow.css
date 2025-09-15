@@ -38,9 +38,12 @@
 
 /* chat input  */
 .chatInput{
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .inputBox{
@@ -60,7 +63,7 @@ input {
     padding: 20px;
     font-size: 0.8rem;
     border-radius: 14px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px,
+    box-shadow: rgba(31, 28, 28, 0.05) 0 54px 55px,
                 rgba(0, 0, 0, 0.05) 0 -12px 30px,
                 rgba(0, 0, 0, 0.05) 0 4px 6px,
                 rgba(0, 0, 0, 0.05) 0 12px 3px,
@@ -73,18 +76,24 @@ input:focus {
 }
 
 
-#submit {
-    cursor: pointer;
-    height: 35px;
-    width: 35px;
-    font-size: 20px;
-    position: absolute;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.info{
+    font-size:0.8rem;
+    padding:0.5rem;
+    color: #b4b4b4;
+}
+#submit{
+   cursor:pointer;
+   height: 35px;
+   width:35px;
+   font-size: 20px;
+   position: absolute;
+   right:15px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
-#submit i:hover {
-    color: #fff;
+#submit i:hover{
+    color:white
+
 }
