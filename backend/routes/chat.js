@@ -60,39 +60,46 @@ router.delete("/thread/:threadId",async(req,res)=>{
     }
 })
 
-//chats
-router.post("/chat",async(req,res)=>{
-    const {threadId, message}=req.body;
+// chat
+router.post("/chat", async (req, res) => {
+    const { threadId, message } = req.body;
 
-    if(!threadId || !message){
-        res.status(500).json({error:"missing required feilds"});
+    if (!threadId || !message) {
+        return res.status(400).json({ error: "missing required fields" });
     }
 
-    try{
-        let thread=await Thread.findOne({threadId});
-        if(!thread){
-            //create new thread
-            thread=new Thread({
+    try {
+        let thread = await Thread.findOne({ threadId });
+
+        if (!thread) {
+            // create a new thread in DB
+            thread = new Thread({
                 threadId,
-                title:message,
-                message:[{role:"user", content:message}]
+                title: message,
+                messages: []
             });
-        }else{
-            thread.messages.push({role:"user", content:message});
         }
 
-        const assistantReply= await getOpenAIAPIResponse(message);
-        thread.messages.push({role:"assistant",content:assistantReply});
-        thread.updatedAt=new Date();
+        // push user message
+        thread.messages.push({ role: "user", content: message });
 
+        // get assistant reply
+        const assistantReply = await getOpenAIAPIResponse(message);
+
+        // push assistant message
+        thread.messages.push({ role: "assistant", content: assistantReply });
+        thread.updatedAt = new Date();
+
+        // save both at once
         await thread.save();
-        res.json({reply:assistantReply});
 
-    }catch(err){
-        console.log(err);
-        res.status(500).json({error:"something went wrong"});
+        res.json({ reply: assistantReply });
+    } catch (err) {
+        console.error("Error in /chat route:", err);
+        res.status(500).json({ error: "something went wrong" });
     }
-})
+});
+
 
 export default router;
 

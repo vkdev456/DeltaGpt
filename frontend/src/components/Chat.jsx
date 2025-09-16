@@ -3,7 +3,7 @@ import  Mycontext from "./MyContext";
 import React, {  useContext,useState,useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
-import "highlight.js/styles/atom-one-dark.css";
+import "highlight.js/styles/github.css";
 
 
 function Chat(){
