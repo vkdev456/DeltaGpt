@@ -1,7 +1,7 @@
 import './App.css'
 import Sidebar from "./components/Sidebar.jsx";
 import ChatWindow from "./components/ChatWindow.jsx";
-import { Mycontext } from './components/MyContext.jsx';
+import  Mycontext  from './components/MyContext.jsx';
 import {useState} from 'react';
 import {v1 as uuidv1} from "uuid";
 
@@ -28,6 +28,5 @@ function App() {
     </>
   )
 }
-
 
 export default App
