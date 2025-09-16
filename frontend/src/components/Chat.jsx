@@ -49,13 +49,21 @@ function Chat(){
 
                 }
                 {
-                    prevChats.length>0 && latestReply!=null &&
+                    prevChats.length>0 && latestReply!==null &&
                     <div className="gptDiv" key={"typing"}>
                         <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{latestReply}</ReactMarkdown>
                     </div>
                 }
-           </div>
-       </>
+                 
+                {
+                    prevChats.length > 0 && latestReply === null &&
+                    <div className="gptDiv" key={"non-typing"}>
+                           <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{prevChats[prevChats.length-1].content}</ReactMarkdown>
+                    </div>
+                } 
+                  
+            </div>
+        </>
     )   
     
 }
