@@ -1,6 +1,30 @@
 import "./Sidebar.css"
+import Mycontext from "./MyContext";
+import {useContext,useEffect} from "react";
+
 
 function Sidebar(){
+
+    const {allThreads,setAllThreads,currThreadId}=useContext(Mycontext);
+    
+    const getAllThreads = async()=>{
+          try{
+            const response=await fetch("http://localhost:8080/api/thread");
+            const res=await response.json();
+            const filteredData =res.map(thread=>({threadId: thread.threadId, title: thread.title}));
+            setAllThreads(filteredData);
+            console.log(filteredData);
+          }catch(err){
+            console.log(err);
+          }
+    }
+
+    useEffect(()=>{
+        getAllThreads();
+
+    },[currThreadId]);//when ever changes in curr th id then call 
+    // this function
+
     return(
         <>
         <section className="sidebar">
@@ -11,12 +35,14 @@ function Sidebar(){
             </button>
 
             {/* history */}
-            <div className="history">
-                <li>thread1</li>
-                <li>thread2</li>
-                <li>thread3</li>
-                <li>thread4</li>
-            </div>
+            <ul className="history">
+               
+                  {allThreads?.map((thread, idx) => (
+                    <li key={idx}>{thread.title}</li>
+                   ))
+                  }
+            </ul>
+          
 
             {/* sign */}
             <div className="sign">
