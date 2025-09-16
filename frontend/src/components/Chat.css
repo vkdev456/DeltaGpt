@@ -14,7 +14,9 @@
 .gptDiv {
     text-align: left;
     font-size: 0.9rem;
+    color: #f1f1f1; 
 }
+
 
 .userMessage {
     background-color: #323232;
@@ -25,3 +27,24 @@
     width: fit-content;
 }
 
+.hljs{
+    border-radius: 14px !important;
+}
+
+pre{
+    white-space: pre-wrap;
+}
+
+
+
+.chats::-webkit-scrollbar {
+    width: 8px;               
+}
+
+.chats::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+.chats::-webkit-scrollbar-thumb:hover {
+    background: #888;         
+}
