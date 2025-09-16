@@ -12,7 +12,7 @@ function App() {
   const [prevChats,setPrevChats]=useState([])//stores all chats of curr thread
   const [newChat,setNewChat]=useState(true);
   const [allThreads,setAllThreads]=useState([]);
-
+  
 
 
 

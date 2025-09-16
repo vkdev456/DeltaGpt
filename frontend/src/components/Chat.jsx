@@ -11,7 +11,13 @@ function Chat(){
     const [latestReply,setLastestReply]=useState(null);
     
     useEffect(()=>{
-        if(!prevChats?.length)return;
+
+        if(reply==null){
+            setLastestReply(null);
+            return;//this will stop the effect while opening new chat
+        }
+
+        if(!prevChats?.length) return;
         
         const content=reply.split(" ")//individual words
 
