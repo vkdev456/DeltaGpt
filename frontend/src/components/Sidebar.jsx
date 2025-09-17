@@ -22,11 +22,9 @@ function Sidebar(){
 
     useEffect(()=>{
         getAllThreads();
-
     },[currThreadId]);//when ever changes in curr th id then call 
     // this function
-
-
+    
     const createNewChat=()=>{
           setNewChat(true);
           setPrompt("");
@@ -49,6 +47,25 @@ function Sidebar(){
        }
 
     }
+    
+    const deleteThread = async(threadId) => {
+        try{
+            const response=await fetch(`http://localhost:8080/api/thread/${threadId}`,{method: "DELETE"});
+            const res=await response.json();
+            console.log(res);
+
+      
+            //updated threads re-render
+            setAllThreads(prev=>prev.filter(thread=>thread.threadId!== threadId));
+
+            if(threadId === currThreadId){
+              createNewChat();
+            }
+
+        }catch(err){
+            console.log(err);
+        }
+    }
 
     return(
         <>
@@ -67,6 +84,12 @@ function Sidebar(){
                         onClick={(e)=>changeThread(thread.threadId)}
                     >
                       {thread.title}
+                      <i className="fa-solid fa-trash"
+                         onClick={(e)=>{e.stopPropagation();
+                                  deleteThread(thread.threadId)
+                         }}>
+                                
+                      </i>
                     </li>
                    ))
                   }
