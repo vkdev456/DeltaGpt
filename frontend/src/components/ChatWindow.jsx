@@ -9,7 +9,7 @@ function ChatWindow(){
 
     const {prompt,setPrompt,reply,setReply,currThreadId,prevChats,setPrevChats,setNewChat}=useContext(myContext);
     const [loading,setLoading] = useState(false);
-    
+    const [isOpen,setIsOpen]=useState(false);//set default false;
 
     const getReply=async ()=>{
         setLoading(true);
@@ -53,18 +53,26 @@ function ChatWindow(){
 
     }, [reply]);
 
-
+   const handleProfileClick=async()=>{
+            setIsOpen(!isOpen);x
+   }
 
     return(
         
         <div className="chatWindow">
             <div className="navBar">
                 <span>VksGpt <i className="fa-solid fa-angle-down"></i></span>
-                <div className="userIconDiv">
+                <div className="userIconDiv" onClick={handleProfileClick}>
                     <span className="userIcon"><i className="fa-solid fa-user"></i></span> 
                 </div>
             </div>
-            
+            {
+                isOpen &&
+                <div className="dropDown">
+                    <div className="dropDownItem"><i class="fa-solid fa-gear"></i>Settings</div>
+                    <div className="dropDownItem"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</div>      
+                </div>
+            }
 
             <Chat></Chat>
 

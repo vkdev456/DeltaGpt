@@ -82,6 +82,7 @@ function Sidebar(){
                   {allThreads?.map((thread, idx) => (
                     <li key={idx} 
                         onClick={(e)=>changeThread(thread.threadId)}
+                        className={thread.threadId ===currThreadId?"hightlighted": " "}
                     >
                       {thread.title}
                       <i className="fa-solid fa-trash"
