@@ -61,7 +61,7 @@ function ChatWindow(){
         
         <div className="chatWindow">
             <div className="navBar">
-                <span>VksGpt <i className="fa-solid fa-angle-down"></i></span>
+                <span>DeltaGpt <i className="fa-solid fa-angle-down"></i></span>
                 <div className="userIconDiv" onClick={handleProfileClick}>
                     <span className="userIcon"><i className="fa-solid fa-user"></i></span> 
                 </div>
@@ -91,7 +91,7 @@ function ChatWindow(){
                     <div id="submit" onClick={getReply}><i className="fa-solid fa-paper-plane"></i></div>
                 </div>
                 
-                <p className="info">VksGpt can make mistakes</p>
+                <p className="info">DeltaGpt can make mistakes</p>
             </div>
         </div>
         
