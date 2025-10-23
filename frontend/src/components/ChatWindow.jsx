@@ -26,7 +26,7 @@ function ChatWindow(){
             })
          };
          try{
-             const response= await fetch("https://deltagpt.onrender.com/api/chat",Options);
+             const response= await fetch("https://delta-gpt.vercel.app/api/chat",Options);
              const res=await response.json();
              console.log(res);
              setReply(res.reply);
