@@ -1,7 +1,6 @@
 package com.deltapgt.backend.service;
 
 import java.util.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -23,7 +22,7 @@ public class OpenAiService {
     public String chat(String message){
           
         Map<String,Object>body=Map.of(
-            "model","gpt-40-mini",
+            "model","gpt-4o-mini",
             "messages",List.of(
                 Map.of(
                     "role","user",
@@ -37,7 +36,7 @@ public class OpenAiService {
         String response=restClient.post()
                         .uri(uri)
                         .header("Authorization","Bearer "+apikey)
-                        .header("Content-Type","Application/json")
+                        .header("Content-Type","application/json")
                         .body(body)
                         .retrieve()
                         .body(String.class);
