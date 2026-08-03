@@ -3,7 +3,6 @@ package com.deltapgt.backend.entity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,7 +19,7 @@ public class Thread {
     private String threadId;
 
     @Column(nullable = false)
-    private String title = "New Chat";
+    private String title;
 
     @OneToMany(
             mappedBy = "thread",

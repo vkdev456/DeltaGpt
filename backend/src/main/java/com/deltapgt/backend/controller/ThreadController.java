@@ -13,7 +13,7 @@ import com.deltapgt.backend.service.*;
 import com.deltapgt.backend.repository.ThreadRepository;
 
 @RestController
-public class ThreadController {
+public class ThreadController{
 
     @Autowired
     ThreadRepository threadRepo;
@@ -32,9 +32,7 @@ public class ThreadController {
     @GetMapping("/thread/{threadId}")
     public ResponseEntity<?> getThread(@PathVariable String threadId){
 
-        Thread thread=threadService.getThread(threadId)
-                      .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Thread not found"));
-     
+        Thread thread=threadService.getThread(threadId);
         return ResponseEntity.status(HttpStatus.OK).body(thread);
 
     }
@@ -44,16 +42,19 @@ public class ThreadController {
            
         String reponse=threadService.deleteThread(threadId);
         return ResponseEntity.status(HttpStatus.OK).body(reponse);
+
     }
 
     @PostMapping("api/test")
     public Thread test(){
+        
         Thread thread=new Thread();
 
         thread.setThreadId("xyz12346");
         thread.setTitle("Testing new Thread");
 
         return threadRepo.save(thread);
+        
     }
 
 

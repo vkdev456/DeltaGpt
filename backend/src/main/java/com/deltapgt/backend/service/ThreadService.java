@@ -2,8 +2,6 @@ package com.deltapgt.backend.service;
 
 import java.util.*;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import com.deltapgt.backend.entity.Thread;
 import org.springframework.stereotype.Service;
@@ -22,8 +20,9 @@ public class ThreadService {
         return threadRepo.findAll();
     }
 
-    public Optional<Thread> getThread(String threadId) {
-        return threadRepo.findByThreadId(threadId);
+    public Thread getThread(String threadId) {
+    return threadRepo.findByThreadId(threadId)
+                     .orElse(null);
     }
 
     @Transactional

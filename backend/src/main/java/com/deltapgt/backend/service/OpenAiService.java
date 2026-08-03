@@ -5,21 +5,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Service
 public class OpenAiService {
 
-    
-    private final RestClient restClient;
+    private RestClient restClient;
 
     public OpenAiService(RestClient restClient){
         this.restClient=restClient;
     }
 
-
     @Value("${openai.api.key}")
-    private String apikey;
+    private  String apikey;
 
-    public String chat(String message){
+    public  String chat(String message){
           
         Map<String,Object>body=Map.of(
             "model","gpt-4o-mini",
@@ -41,9 +42,23 @@ public class OpenAiService {
                         .retrieve()
                         .body(String.class);
 
+            try {
+        ObjectMapper mapper = new ObjectMapper();
 
-        return response;                
+        JsonNode root = mapper.readTree(response);
 
+        return root
+                .get("choices")
+                .get(0)
+                .get("message")
+                .get("content")
+                .asText();
+
+    } catch (Exception e) {
+        throw new RuntimeException("Failed to parse OpenAI response", e);
+    }
+
+     
     }
     
 }
