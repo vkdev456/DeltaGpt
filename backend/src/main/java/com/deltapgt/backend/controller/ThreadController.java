@@ -3,10 +3,8 @@ package com.deltapgt.backend.controller;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import com.deltapgt.backend.entity.Thread;
 import com.deltapgt.backend.service.*;
 
@@ -33,15 +31,16 @@ public class ThreadController{
     public ResponseEntity<?> getThread(@PathVariable String threadId){
 
         Thread thread=threadService.getThread(threadId);
-        return ResponseEntity.status(HttpStatus.OK).body(thread);
 
+        return ResponseEntity.status(HttpStatus.OK).body(thread);
     }
 
     @DeleteMapping("/thread/{threadId}")
     public ResponseEntity<?> deleteThread(@PathVariable String threadId){
            
         String reponse=threadService.deleteThread(threadId);
-        return ResponseEntity.status(HttpStatus.OK).body(reponse);
+
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of("success","Chat deleted successfully"));
 
     }
 

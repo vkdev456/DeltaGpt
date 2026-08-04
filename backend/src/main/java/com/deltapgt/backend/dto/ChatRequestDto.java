@@ -1,13 +1,11 @@
 package com.deltapgt.backend.dto;
 
-
 public class ChatRequestDto {
     private String threadId;
     private String message;
 
-    public ChatRequestDto(String threadId,String message){
-        this.threadId=threadId;
-        this.message=message;
+    public ChatRequestDto(){
+  
     }
 
     public String getThreadId() {

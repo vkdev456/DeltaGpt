@@ -10,6 +10,8 @@ import com.deltapgt.backend.entity.Thread;
 import com.deltapgt.backend.repository.MessageRepository;
 import com.deltapgt.backend.repository.ThreadRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ChatService {
 
@@ -25,6 +27,8 @@ public class ChatService {
     @Autowired
     private MessageRepository messageRepo;
 
+
+    @Transactional
     public String Chat(ChatRequestDto chat) {
 
    
@@ -55,7 +59,10 @@ public class ChatService {
         assistantMessage.setContent(assistantReply);
         assistantMessage.setThread(thread);
 
-        messageRepo.save(assistantMessage);
+        messageRepo.save(assistantMessage);  
+        
+        threadRepo.save(thread);
+
 
         return assistantReply;
     }
