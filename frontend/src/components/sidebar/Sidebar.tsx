@@ -16,8 +16,8 @@ function Sidebar(){
             <ul className="history">
                 <li>
                   Hi virat Kohli
-                  <i className="fa-solid fa-trash">
-                     
+                  <i className="fa-solid fa-trash" >
+
                   </i>
                 </li>
             </ul>
