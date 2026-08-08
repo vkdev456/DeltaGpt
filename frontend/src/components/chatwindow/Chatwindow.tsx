@@ -1,9 +1,19 @@
-import react from "react";
+import {useState} from "react";
+
 import "./Chatwindow.css";
 import Chat from "../chat/Chat";
-// import 
 
-export function ChatWindow() {
+
+export function ChatWindow(){
+
+  const [prompt,setPrompt]=useState("");
+
+  const handlePrompt =async()=>{
+      try{
+         
+      }
+  }
+
   return (
     <>
       <div className="chatwindow" >
@@ -19,9 +29,11 @@ export function ChatWindow() {
             Answer
             <div className="inputText">
               <input 
-               placeholder="enter question"
+               placeholder="enter question" value={prompt}
+               onChange={(e)=>setPrompt(e.target.value)}
+
               />
-              <div id="submit" ><i className="fa-solid fa-paper-plane"></i></div>
+              <div id="submit" onClick={}><i className="fa-solid fa-paper-plane"></i></div>
             </div>
             <p className="info">DeltaGpt can make mistakes</p>
             
