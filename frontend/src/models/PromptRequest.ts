@@ -1,3 +1,4 @@
 export interface PromptRequest{
-    prompt:string;
+    threadId:string;
+    message:string;
 }
