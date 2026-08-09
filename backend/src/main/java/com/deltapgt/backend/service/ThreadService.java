@@ -3,6 +3,8 @@ package com.deltapgt.backend.service;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+
+import com.deltapgt.backend.dto.ThreadResponseDto;
 import com.deltapgt.backend.entity.Thread;
 import org.springframework.stereotype.Service;
 import com.deltapgt.backend.repository.ThreadRepository;
@@ -14,10 +16,18 @@ public class ThreadService{
     @Autowired
     ThreadRepository threadRepo;
 
-    public List<Thread> getAllThreads() {
+    public List<ThreadResponseDto> getAllThreads() {
         return threadRepo.findAll(
                     Sort.by(Sort.Direction.DESC,"updatedAt")
-        );
+        )
+                    .stream()
+        .map(thread -> new ThreadResponseDto(
+            thread.getThreadId(),
+
+            thread.getTitle()
+        ))
+        .toList();
+    
     }
     
     public Thread getThread(String threadId) {

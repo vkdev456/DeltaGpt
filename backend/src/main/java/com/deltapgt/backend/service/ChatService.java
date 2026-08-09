@@ -32,7 +32,7 @@ public class ChatService {
     public String Chat(ChatRequestDto chat) {
 
    
-        Thread thread = threadService.getThread(chat.getThreadId());
+        Thread thread = threadRepo.findByThreadId(chat.getThreadId()).orElse(null);
 
         if (thread == null) {
 

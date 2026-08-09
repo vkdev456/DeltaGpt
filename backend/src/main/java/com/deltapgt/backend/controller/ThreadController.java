@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.deltapgt.backend.dto.ThreadResponseDto;
 import com.deltapgt.backend.entity.Thread;
 import com.deltapgt.backend.service.*;
 
@@ -22,7 +24,7 @@ public class ThreadController{
     @GetMapping("/threads")
     public ResponseEntity<?> getAllThreads(){
 
-        List<Thread>response=threadService.getAllThreads();
+        List<ThreadResponseDto>response=threadService.getAllThreads();
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }

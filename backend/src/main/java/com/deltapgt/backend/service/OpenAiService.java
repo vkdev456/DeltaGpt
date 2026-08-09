@@ -58,7 +58,6 @@ public class OpenAiService {
         throw new RuntimeException("Failed to parse OpenAI response", e);
     }
 
-     
     }
     
 }
