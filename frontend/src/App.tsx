@@ -7,7 +7,7 @@ import {v1 as uuidv1} from "uuid";
 import type { ChatMessage } from './models/ChatMessage';
 import type Thread from './models/Thread';
 
-function App() {
+function App(){
 
   const [prompt, setPrompt]=useState("");
   const [reply, setReply]=useState(null);
@@ -16,6 +16,7 @@ function App() {
   const [newChat,setNewChat]=useState(true);
   const [isTyping, setIsTyping] = useState(false);
   const [allThread,setAllThreads]=useState<Thread[]>([]);
+  
   
   const providerValues={
        prompt,setPrompt,
