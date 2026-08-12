@@ -10,7 +10,7 @@ import type Thread from './models/Thread';
 function App(){
 
   const [prompt, setPrompt]=useState("");
-  const [reply, setReply]=useState(null);
+  const [reply,setReply]=useState<String|null>(null);
   const [currrentThreadId,setCurrrentThreadId]=useState(uuidv1());
   const [prevChats,setPrevChats]=useState<ChatMessage[]>([]);
   const [newChat,setNewChat]=useState(true);

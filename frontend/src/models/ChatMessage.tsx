@@ -1,4 +1,4 @@
-export interface ChatMessage{
-    role:string,
-    content:string,
+export interface ChatMessage {
+    role: "user" | "assistant";
+    content: string;
 }
