@@ -98,7 +98,7 @@ export function ChatWindow() {
 
 
         <Chat></Chat>
-        <ScaleLoader color="#fffff" loading={loading}></ScaleLoader>
+        <ScaleLoader color="#fff" loading={loading}></ScaleLoader>
         <div className="chatMain">
           <div className="inputText">
             <input placeholder="Ask anything"
