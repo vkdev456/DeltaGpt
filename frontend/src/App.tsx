@@ -6,6 +6,10 @@ import MyContext from "./MyContext";
 import {v1 as uuidv1} from "uuid";
 import type { ChatMessage } from './models/ChatMessage';
 import type Thread from './models/Thread';
+import Signup from "./components/authentication/Signup";
+import Login from './components/authentication/Login';
+import Landing from './components/landingpage/Landing';
+import {Route,BrowserRouter as Router,Routes} from 'react-router-dom';
 
 function App(){
 
@@ -33,8 +37,14 @@ function App(){
     
       <div className="app">
           <MyContext.Provider value={providerValues}>
-                <Sidebar></Sidebar>
-                <ChatWindow></ChatWindow>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<Landing></Landing>}></Route>
+                  <Route path="/signup" element={<Signup></Signup>}/> 
+                  <Route path="/login" element={<Login></Login>}/>
+                  <Route path="/chat" element={<><Sidebar></Sidebar><ChatWindow></ChatWindow></>}/>
+                </Routes>
+              </Router>
           </MyContext.Provider>
       </div>
     

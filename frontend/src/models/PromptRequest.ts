@@ -1,4 +1,4 @@
 export interface PromptRequest{
     threadId:string;
-    message:string;
+    message:string
 }

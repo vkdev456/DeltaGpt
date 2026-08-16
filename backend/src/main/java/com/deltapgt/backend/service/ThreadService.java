@@ -6,44 +6,44 @@ import org.springframework.data.domain.Sort;
 
 import com.deltapgt.backend.dto.ThreadResponseDto;
 import com.deltapgt.backend.entity.Thread;
+import com.deltapgt.backend.entity.User;
+
 import org.springframework.stereotype.Service;
 import com.deltapgt.backend.repository.ThreadRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-public class ThreadService{
+public class ThreadService {
 
     @Autowired
     ThreadRepository threadRepo;
 
-    public List<ThreadResponseDto> getAllThreads() {
-        return threadRepo.findAll(
-                    Sort.by(Sort.Direction.DESC,"updatedAt")
-        )
-                    .stream()
-        .map(thread -> new ThreadResponseDto(
-            thread.getThreadId(),
+    public List<ThreadResponseDto> getAllThreads(User user) {
 
-            thread.getTitle()
-        ))
-        .toList();
-    
+        return threadRepo.findByUser(
+                user,
+                Sort.by(Sort.Direction.DESC, "updatedAt"))
+                .stream()
+                .map(thread -> new ThreadResponseDto(
+                        thread.getThreadId(),
+                        thread.getTitle()))
+                .toList();
     }
-    
+
     public Thread getThread(String threadId) {
-            return threadRepo.findByThreadId(threadId)
-                    .orElseThrow(()->new RuntimeException("Chat not found"));
+        return threadRepo.findByThreadId(threadId)
+                .orElseThrow(() -> new RuntimeException("Chat not found"));
     }
 
     @Transactional
-    public String deleteThread(String threadId){
+    public String deleteThread(String threadId) {
 
-        Optional<Thread>thread= threadRepo.findByThreadId(threadId);
+        Optional<Thread> thread = threadRepo.findByThreadId(threadId);
 
-        if(thread.isPresent()){
-            threadRepo.deleteByThreadId(threadId); 
+        if (thread.isPresent()) {
+            threadRepo.deleteByThreadId(threadId);
             return "Thread Deleted";
-        }else{
+        } else {
             throw new RuntimeException("Thread does not exist with ID: " + threadId);
         }
 
