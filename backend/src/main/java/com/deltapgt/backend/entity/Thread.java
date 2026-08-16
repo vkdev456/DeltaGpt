@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Thread {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,11 +21,11 @@ public class Thread {
     @Column(nullable = false)
     private String title;
 
-    @OneToMany(
-            mappedBy = "thread",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> messages = new ArrayList<>();
 
     @CreationTimestamp
@@ -73,5 +73,12 @@ public class Thread {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+      public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

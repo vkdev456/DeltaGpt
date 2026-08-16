@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 import com.deltapgt.backend.entity.User;
 
 @Repository
-public interface UserRepositorty extends JpaRepository<User,String>{
+public interface UserRepositorty extends JpaRepository<User,Long>{
 
     User getByUsername(String username);
+    
     
 } 

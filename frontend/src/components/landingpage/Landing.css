@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+
+.landing {
+    min-height: 100vh;
+    width: 100%;
+
+    background-image: url("/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.landingNav {
+    width: 100%;
+    padding: 25px 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.landingNav h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+
+.loginBtn {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    padding: 9px 20px;
+    border-radius: 8px;
+
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    transition: 0.2s;
+}
+
+.loginBtn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+.landingContent {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+.hero {
+    max-width: 700px;
+    padding: 20px;
+}
+
+.badge {
+    display: inline-block;
+
+    margin-bottom: 20px;
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    font-size: 0.8rem;
+}
+
+.hero h1 {
+    margin: 0;
+
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 700;
+
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: #9d8cff;
+}
+
+.description {
+    max-width: 600px;
+
+    margin: 25px auto;
+
+    color: #bdbdbd;
+
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.heroButtons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.getStarted,
+.learnMore {
+    padding: 12px 22px;
+
+    border-radius: 8px;
+
+    font-size: 0.95rem;
+
+    cursor: pointer;
+}
+
+.getStarted {
+    border: none;
+
+    background: white;
+    color: #111;
+
+    font-weight: 600;
+}
+
+.getStarted i {
+    margin-left: 8px;
+}
+
+.getStarted:hover {
+    opacity: 0.9;
+}
+
+.learnMore {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.learnMore:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.landingFooter {
+    padding: 20px 50px;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #777;
+    font-size: 0.75rem;
+}
+
