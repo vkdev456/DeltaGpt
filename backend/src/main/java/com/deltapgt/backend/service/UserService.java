@@ -16,31 +16,34 @@ public class UserService {
     @Autowired
     private UserRepositorty userRepo;
 
-    public User signup(SignupDto signup){
+    @Autowired
+    private JwtService jwtService;
 
-        User username=userRepo.getByUsername(signup.getUsername());
-        if(username!=null){
-            throw new UserAlreadyExsistsException("user already exists");   
+    public User signup(SignupDto signup) {
+
+        User username = userRepo.getByUsername(signup.getUsername());
+        if (username != null) {
+            throw new UserAlreadyExsistsException("user already exists");
         }
 
-        User user=new User();
+        User user = new User();
         user.setEmail(signup.getEmail());
         user.setPassword(signup.getPassword());
         user.setUsername(signup.getUsername());
-        
+
         return userRepo.save(user);
+        
     }
 
-    public String login(LoginDto login){
-           
-        User username=userRepo.getByUsername(login.getUsername());
-        
-        if(username.getPassword().equals(login.getPassword())){
-               return "loginsuccess";
-        }else{
+    public String login(LoginDto login) {
+
+        User user = userRepo.getByUsername(login.getUsername());
+
+        if (user == null || !user.getPassword().equals(login.getPassword())) {
             throw new InvalidCredentialsException("Invalid Credentials");
         }
 
+        return jwtService.generateToken(user.getUsername());
     }
-    
+
 }

@@ -1,10 +1,10 @@
-import axios from "axios";
+import api from "./AxiosInstance";
 
-const threads = async()=>{
-      const response= await axios.get("http://localhost:8080/threads");
+const getThreads = async () => {
 
-      return response.data;
-}
+    const response = await api.get("/threads");
 
+    return response.data;
+};
 
-export default threads;
+export default getThreads;

@@ -7,6 +7,7 @@ import type { PromptRequest } from "../../models/PromptRequest";
 import MyContext from "../../MyContext";
 import { ScaleLoader } from "react-spinners";
 import type { ChatMessage } from "../../models/ChatMessage";
+import { useNavigate } from "react-router-dom";
 
 
 export function ChatWindow() {
@@ -14,6 +15,7 @@ export function ChatWindow() {
   const { prompt, setPrompt, reply, setReply, setNewChat, setIsTyping, prevChats, setPrevChats, currrentThreadId } = useContext(MyContext);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const username = localStorage.getItem("username");
 
   const getReply = async () => {
 
@@ -67,6 +69,12 @@ export function ChatWindow() {
     setIsOpen(!isOpen);
   };
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <>
       <div className="chatwindow" >
@@ -87,7 +95,7 @@ export function ChatWindow() {
                 Settings
               </div>
 
-              <div className="dropDownItem">
+              <div className="dropDownItem" onClick={handleLogout}>
                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 Logout
               </div>

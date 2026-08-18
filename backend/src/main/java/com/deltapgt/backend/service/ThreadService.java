@@ -10,6 +10,8 @@ import com.deltapgt.backend.entity.User;
 
 import org.springframework.stereotype.Service;
 import com.deltapgt.backend.repository.ThreadRepository;
+import com.deltapgt.backend.repository.UserRepositorty;
+
 import jakarta.transaction.Transactional;
 
 @Service
@@ -18,7 +20,16 @@ public class ThreadService {
     @Autowired
     ThreadRepository threadRepo;
 
-    public List<ThreadResponseDto> getAllThreads(User user) {
+    @Autowired
+    UserRepositorty userRepo;
+
+    public List<ThreadResponseDto> getAllThreads(String username) {
+
+        User user = userRepo.getByUsername(username);
+
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
 
         return threadRepo.findByUser(
                 user,
@@ -30,23 +41,28 @@ public class ThreadService {
                 .toList();
     }
 
-    public Thread getThread(String threadId) {
-        return threadRepo.findByThreadId(threadId)
+    public Thread getThread(String threadId, String username) {
+
+        Thread thread = threadRepo.findByThreadId(threadId)
                 .orElseThrow(() -> new RuntimeException("Chat not found"));
+        if (!thread.getUser().getUsername().equals(username)) {
+            throw new RuntimeException("Unauthorized access");
+        }
+        return thread;
     }
 
     @Transactional
-    public String deleteThread(String threadId) {
+    public String deleteThread(String threadId, String username) {
 
-        Optional<Thread> thread = threadRepo.findByThreadId(threadId);
+        Thread thread = threadRepo.findByThreadId(threadId)
+                .orElseThrow(() -> new RuntimeException("Thread does not exist"));
 
-        if (thread.isPresent()) {
-            threadRepo.deleteByThreadId(threadId);
-            return "Thread Deleted";
-        } else {
-            throw new RuntimeException("Thread does not exist with ID: " + threadId);
+        if (!thread.getUser().getUsername().equals(username)) {
+            throw new RuntimeException("Unauthorized access");
         }
 
+        threadRepo.delete(thread);
+        return "Thread Deleted";
     }
 
 }

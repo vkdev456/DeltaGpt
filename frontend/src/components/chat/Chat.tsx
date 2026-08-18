@@ -48,24 +48,15 @@ export default function () {
 
     return (
                <>
-            {newChat && (
-                <h1>Start a New Chat!</h1>
-            )}
-
+            {newChat && (<h1 style={{color:"white"}}>Start a New Chat!</h1>)}
 
             <div className="chats">
-
                 {
                     prevChats
                         ?.slice(0, -1)
                         .map(
                             (chat: ChatMessage, idx: number)=>(
-                                <div className={
-                                        chat.role === "user"? "userDiv" : "gptDiv"
-                                    }
-                                    key={idx}
-                                >
-
+                                <div className={chat.role === "user"? "userDiv" : "gptDiv"}key={idx}>
                                     {
                                         chat.role === "user"?<p className="userMessage">{chat.content}</p>:
                                             <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
@@ -76,7 +67,6 @@ export default function () {
                             )
                         )
                 }
-
 
                 {
                     prevChats.length > 0 &&
@@ -91,13 +81,11 @@ export default function () {
                     </div>
                 }
 
-
                 {
                     prevChats.length > 0 &&
                     latestReply === null &&
 
                     <div className="gptDiv">
-
                         <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
                             {
                                 prevChats[prevChats.length - 1].content

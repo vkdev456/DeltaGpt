@@ -28,6 +28,7 @@
     margin-left: 15rem;
     max-width: 500px;
     width: fit-content;
+    color: white;
 }
 
 .hljs{
@@ -40,7 +41,7 @@ gptDiv p {
     line-height: 1.4;
 }
 
-/* Markdown headings */
+
 .gptDiv h1,
 .gptDiv h2,
 .gptDiv h3,
@@ -63,39 +64,39 @@ gptDiv p {
     font-size: 1.1rem;
 }
 
-/* Ordered and unordered lists */
+
 .gptDiv ol,
 .gptDiv ul {
     margin: 6px 0 12px 0;
     padding-left: 25px;
 }
 
-/* List items */
+
 .gptDiv li {
     margin: 3px 0;
     padding-left: 2px;
     line-height: 1.4;
 }
 
-/* Nested lists */
+
 .gptDiv li ul,
 .gptDiv li ol {
     margin: 2px 0;
 }
 
-/* Bold text */
+
 .gptDiv strong {
     font-weight: 700;
     color: #f1f1f1;
 }
 
-/* Code blocks */
+
 .gptDiv pre {
     white-space: pre-wrap;
     margin: 12px 0;
 }
 
-/* Inline code */
+
 .gptDiv code {
     border-radius: 5px;
 }

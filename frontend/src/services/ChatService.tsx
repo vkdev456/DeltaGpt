@@ -1,11 +1,14 @@
-import axios from "axios";
 import type { PromptRequest } from "../models/PromptRequest";
+import api from "./AxiosInstance";
 
-const reply=async(request:PromptRequest)=>{
-      
-    const response= await axios.post("http://localhost:8080/chat",request);
-    
+const sendPrompt = async (request: PromptRequest) => {
+
+    const response = await api.post(
+        "/chat",
+        request
+    );
+
     return response.data;
-}
+};
 
-export default reply;
+export default sendPrompt;

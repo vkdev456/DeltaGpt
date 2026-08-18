@@ -7,6 +7,7 @@ import type Thread from "../../models/Thread";
 import { v1 as uuidv1 } from "uuid";
 import axios from "axios";
 import type { ChatMessage } from "../../models/ChatMessage";
+import api from "../../services/AxiosInstance";
 
 function Sidebar() {
 
@@ -44,7 +45,6 @@ function Sidebar() {
     }, [currrentThreadId]);
 
 
-    // new chat
     const createNewChat = () => {
         setNewChat(true);
         setPrompt("");
@@ -53,24 +53,18 @@ function Sidebar() {
         setPrevChats([]);
     };
 
-    // change Thread
     const changeThread = async (newThreadId: string) => {
 
         console.log("Changing thread:", newThreadId);
-
         setCurrrentThreadId(newThreadId);
 
         try {
 
-            const response = await axios.get(
-                `http://localhost:8080/thread/${newThreadId}`
+            const response = await api.get(
+                `/thread/${newThreadId}`
             );
-
             console.log("Selected thread:", response.data);
-
-            //format 
             const messages = response.data.messages || [];
-
             const formattedMessages: ChatMessage[] =
                 messages.map((message: any) => ({
                     role:
@@ -81,27 +75,23 @@ function Sidebar() {
                 }));
 
             setPrevChats(formattedMessages);
-
             setNewChat(false);
             setReply(null);
+
         } catch (err) {
             console.log("Failed to load thread:", err);
         }
+
     };
 
-    // delete thread
     const deleteThread = async (threadId: string) => {
 
         try {
 
-            const response = await axios.delete(
-                `http://localhost:8080/thread/${threadId}`
-            );
+            const response = await api.delete(`/thread/${threadId}`);
 
             console.log(response.data);
 
-
-            // remove deleted threadfrom UI
             setAllThreads((prev: Thread[]) =>
                 prev.filter(
                     (thread: Thread) =>
@@ -109,11 +99,10 @@ function Sidebar() {
                 )
             );
 
-            // If currently selected thread was deleted
-            // create a new chat
             if (threadId === currrentThreadId) {
                 createNewChat();
             }
+
         } catch (err) {
             console.log("Failed to delete thread:", err);
         }
@@ -129,7 +118,6 @@ function Sidebar() {
                     <i className="fa-solid fa-pen-to-square"></i>
                 </span>
             </div>
-
 
             <ul className="history">
                 {allThread.map((thread: Thread) => (
@@ -153,9 +141,9 @@ function Sidebar() {
                             }}
                         />
                     </li>
+
                 ))}
             </ul>
-
             <div className="sign">
                 <p>By Vk✨</p>
             </div>

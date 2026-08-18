@@ -4,13 +4,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.deltapgt.backend.service.ChatService;
 import com.deltapgt.backend.service.OpenAiService;
 import com.deltapgt.backend.service.ThreadService;
 import com.deltapgt.backend.dto.ChatRequestDto;
-
 
 @RestController
 public class ChatController {
@@ -25,14 +25,19 @@ public class ChatController {
     ChatService chatService;
 
     @GetMapping("/api/chat")
-    public String chat(@RequestParam String message){
+    public String chat(@RequestParam String message) {
         return openAiService.chat(message);
     }
 
     @PostMapping("/chat")
-    public ResponseEntity<?> newchat(@RequestBody ChatRequestDto chat){
-        String response=chatService.Chat(chat);
-        return ResponseEntity.status(HttpStatus.OK).body(Map.of("reply",response));
+    public ResponseEntity<?> newchat(@RequestBody ChatRequestDto chat,Authentication authentication) {
+
+        String username = authentication.getName();
+
+        String response = chatService.Chat(chat, username);
+
+        return ResponseEntity.ok(
+                Map.of("reply", response));
     }
-    
+
 }

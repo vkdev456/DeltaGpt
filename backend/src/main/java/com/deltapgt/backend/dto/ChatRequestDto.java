@@ -3,8 +3,6 @@ package com.deltapgt.backend.dto;
 public class ChatRequestDto {
     private String threadId;
     private String message;    
-    private String username;
-
 
     public ChatRequestDto() {
 
@@ -26,11 +24,4 @@ public class ChatRequestDto {
         this.message = message;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

@@ -32,9 +32,9 @@ public class ChatService {
     private UserRepositorty userRepo;
 
     @Transactional
-    public String Chat(ChatRequestDto chat) {
+    public String Chat(ChatRequestDto chat,String username) {
 
-        User user = userRepo.getByUsername(chat.getUsername());
+        User user = userRepo.getByUsername(username);
 
         if (user == null) {
             throw new RuntimeException("User not found");
